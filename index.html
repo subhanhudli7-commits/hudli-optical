@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b46">
+<title>HUDLI Eyecare | See Your Style</title>
+
+<style>
+:root {
+  --navy: #102b46;
+  --blue: #245c85;
+  --light: #f3f7fa;
+  --white: #fff;
+  --text: #202c39;
+  --muted: #718096;
+  --gold: #c6a56b;
+  --border: #e4eaf0;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--text);
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 2px 12px #102b4610;
+}
+.topbar {
+  padding: 9px 15px;
+  text-align: center;
+  background: var(--navy);
+  color: white;
+  font-size: 12px;
+  letter-spacing: .5px;
+}
+.nav {
+  max-width: 1250px;
+  margin: auto;
+  min-height: 76px;
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.logo {
+  font-size: 28px;
+  letter-spacing: 4px;
+  font-weight: 900;
+  color: var(--navy);
+}
+.logo small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  margin-top: 4px;
+  color: var(--gold);
+}
+.navlinks { display: flex; gap: 23px; font-size: 14px; }
+.navlinks a:hover { color: var(--blue); }
+.navactions { display: flex; align-items: center; gap: 12px; }
+.iconbtn {
+  border: 1px solid var(--border);
+  background: white;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--navy);
+}
+.iconbtn:hover { background: var(--light); }
+.hero {
+  background: linear-gradient(115deg,#eaf1f6,#f8f7f2);
+  padding: 55px 6%;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 35px;
+}
+.eyebrow {
+  color: var(--blue);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: clamp(38px,5.5vw,69px);
+  line-height: 1.06;
+  letter-spacing: -2px;
+  margin: 18px 0;
+  color: var(--navy);
+}
+.hero p { color: #526478; line-height: 1.8; max-width: 480px; }
+.btn {
+  display: inline-block;
+  border: 0;
+  background: var(--navy);
+  color: white;
+  padding: 14px 22px;
+  border-radius: 7px;
+  margin: 10px 8px 0 0;
+  transition: .2s;
+}
+.btn:hover { background: var(--blue); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+.hero-img {
+  min-height: 330px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #dce6ed;
+}
+.hero-img img { width: 100%; height: 100%; min-height: 330px; object-fit: cover; display: block; }
+.features {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 27px 22px;
+}
+.feature { text-align: center; font-size: 13px; padding: 8px; }
+.feature strong { display: block; margin-bottom: 6px; color: var(--navy); }
+section { scroll-margin-top: 110px; }
+.section { max-width: 1250px; padding: 50px 22px; margin: auto; }
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+h2 { color: var(--navy); font-size: clamp(27px,4vw,38px); margin: 8px 0; }
+.sub { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+}
+.category {
+  background: var(--light);
+  border: 1px solid transparent;
+  border-radius: 14px;
+  padding: 27px 12px;
+  text-align: center;
+  transition: .2s;
+}
+.category:hover { border-color: var(--gold); transform: translateY(-3px); }
+.category .emoji { font-size: 32px; margin-bottom: 12px; }
+.category strong { color: var(--navy); }
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.toolbar input, .toolbar select {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  min-width: 140px;
+}
+.toolbar input { flex: 1; min-width: 200px; }
+.products {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 19px;
+}
+.product {
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  overflow: hidden;
+  background: white;
+  transition: .25s;
+}
+.product:hover { box-shadow: 0 12px 35px #102b4612; transform: translateY(-4px); }
+.product-photo {
+  position: relative;
+  height: 215px;
+  background: #f0f4f7;
+  overflow: hidden;
+  cursor: pointer;
+}
+.product-photo img { width: 100%; height: 100%; object-fit: cover; transition: .4s; }
+.product:hover .product-photo img { transform: scale(1.04); }
+.tag {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: white;
+  color: var(--navy);
+  font-size: 10px;
+  padding: 7px 9px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+.wish {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background: white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+.wish.active { color: #d33; }
+.product-info { padding: 14px; }
+.product-info h3 { font-size: 15px; margin: 3px 0 8px; color: var(--navy); }
+.product-info .sub { font-size: 12px; }
+.price { font-weight: bold; font-size: 19px; color: var(--navy); margin: 10px 0; }
+.oldprice { color: #8a96a3; text-decoration: line-through; font-size: 12px; font-weight: normal; margin-left: 5px; }
+.rating { color: #b18737; font-size: 12px; }
+.addbtn {
+  width: 100%;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+.addbtn:hover { color: white; background: var(--navy); }
+.banner {
+  background: var(--navy);
+  color: white;
+  padding: 50px 25px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.banner h2 { color: white; }
+.banner p { color: #d4e0e9; line-height: 1.7; }
+.banner .btn { background: var(--gold); color: #17283b; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
+.about-img { width: 100%; height: 320px; object-fit: cover; border-radius: 15px; }
+footer { background: #0b2035; color: white; padding: 40px 22px; }
+.footer-inner {
+  max-width: 1200px; margin: auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 25px;
+}
+footer h3 { color: white; }
+footer p, footer a { color: #c1d0de; font-size: 13px; line-height: 1.9; }
+footer a { display: block; }
+footer a:hover { color: white; }
+.overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: #07142188; display: none;
+}
+.overlay.show { display: block; }
+.drawer {
+  position: absolute; right: 0; top: 0; height: 100%;
+  width: min(450px,100%); background: white;
+  padding: 22px; overflow-y: auto;
+}
+.drawer-head { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:12px; }
+.close { border:0; background:#eef2f5; border-radius:7px; padding:9px 13px; }
+.cart-item { display:flex; gap:12px; padding:15px 0; border-bottom:1px solid var(--border); }
+.cart-item img { width:85px; height:85px; object-fit:cover; border-radius:8px; }
+.cart-item h4 { margin:4px 0 8px; font-size:14px; }
+.qty { display:flex; align-items:center; gap:10px; margin-top:9px; }
+.qty button { border:1px solid var(--border); background:white; padding:4px 10px; border-radius:5px; }
+.cart-total { padding:17px 0; border-top:1px solid var(--border); margin-top:15px; }
+.cart-total div { display:flex; justify-content:space-between; margin:10px 0; }
+.full { width:100%; text-align:center; }
+.modal {
+  position:fixed; inset:0; z-index:60; background:#07142199;
+  display:none; align-items:center; justify-content:center; padding:15px;
+}
+.modal.show { display:flex; }
+.modal-card {
+  width:min(600px,100%); max-height:90vh; overflow:auto;
+  background:white; padding:25px; border-radius:15px;
+}
+.modal-card input, .modal-card select, .modal-card textarea {
+  width:100%; padding:12px; border:1px solid var(--border);
+  border-radius:7px; margin:6px 0 14px;
+}
+.modal-card label { font-size:13px; font-weight:bold; }
+.modal-card h2 { font-size:26px; }
+.detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; }
+.detail-grid img { width:100%; border-radius:10px; }
+.notice { background:#edf7ef; padding:13px; border-radius:8px; color:#21633b; line-height:1.6; }
+.empty { text-align:center; padding:35px 10px; color:var(--muted); }
+.mobile-menu { display:none; }
+#toast {
+  position:fixed; bottom:22px; left:50%; transform:translateX(-50%);
+  background:var(--navy); color:white; padding:13px 20px;
+  border-radius:8px; z-index:100; display:none; max-width:90%;
+}
+@media(max-width:900px) {
+  .navlinks { gap:12px; }
+  .products { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .product-photo { height:190px; }
+}
+@media(max-width:650px) {
+  .nav { padding:12px 15px; }
+  .logo { font-size:23px; }
+  .navlinks { display:none; }
+  .hero { padding:35px 18px; }
+  .hero-inner { grid-template-columns:1fr; gap:25px; }
+  h1 { letter-spacing:-1px; }
+  .hero-img, .hero-img img { min-height:230px; max-height:290px; }
+  .features { grid-template-columns:repeat(2,1fr); padding:15px; }
+  .section { padding:35px 15px; }
+  .categories { grid-template-columns:repeat(2,1fr); }
+  .products { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .product-photo { height:155px; }
+  .product-info { padding:10px; }
+  .product-info h3 { font-size:13px; }
+  .price { font-size:17px; }
+  .oldprice { display:block; margin:4px 0; }
+  .banner { display:block; padding:30px 22px; }
+  .about-grid { grid-template-columns:1fr; }
+  .about-img { height:230px; }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+  .footer-inner > div:first-child { grid-column:1/-1; }
+  .section-head { align-items:start; flex-direction:column; }
+  .detail-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="topbar">YOUR VISION, OUR PRIORITY · QUALITY EYEWEAR FOR EVERY DAY</div>
+  <nav class="nav">
+    <a href="#" class="logo">HUDLI<small>E Y E C A R E</small></a>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#shop">Eyeglasses</a>
+      <a href="#categories">Collections</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="navactions">
+      <button class="iconbtn" onclick="openWishlist()" aria-label="Wishlist">♡ <span id="wishCount">0</span></button>
+      <button class="iconbtn" onclick="openCart()" aria-label="Shopping cart">Bag (<span id="cartCount">0</span>)</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">Find your perfect frame</div>
+      <h1>See Better.<br>Look Better.</h1>
+      <p>Discover eyewear that matches your personality. Explore modern frames, everyday spectacles and statement sunglasses at HUDLI Eyecare.</p>
+      <a class="btn" href="#shop">Shop Collection →</a>
+      <a class="btn btn-outline" href="#about">Discover HUDLI</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1000&q=85" alt="Stylish sunglasses collection">
+    </div>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature"><strong>✦ Quality Frames</strong><span class="sub">Style meets comfort</span></div>
+  <div class="feature"><strong>◉ Everyday Comfort</strong><span class="sub">Frames for daily wear</span></div>
+  <div class="feature"><strong>♡ Personal Style</strong><span class="sub">Find your look</span></div>
+  <div class="feature"><strong>✓ Easy Ordering</strong><span class="sub">Simple shopping experience</span></div>
+</div>
+
+<section class="section" id="categories">
+  <div class="section-head">
+    <div><div class="eyebrow">Explore your style</div><h2>Shop by Collection</h2></div>
+    <p class="sub">Frames for every face and occasion.</p>
+  </div>
+  <div class="categories">
+    <button class="category" onclick="filterCategory('Eyeglasses')"><div class="emoji">👓</div><strong>Eyeglasses</strong><p class="sub">Everyday essentials</p></button>
+    <button class="category" onclick="filterCategory('Sunglasses')"><div class="emoji">🕶️</div><strong>Sunglasses</strong><p class="sub">Sun-ready style</p></button>
+    <button class="category" onclick="filterCategory('Premium')"><div class="emoji">✧</div><strong>Premium</strong><p class="sub">Elevate your look</p></button>
+    <button class="category" onclick="filterCategory('Blue Light')"><div class="emoji">💻</div><strong>Blue Light</strong><p class="sub">Screen eyewear</p></button>
+  </div>
+</section>
+
+<section class="section" id="shop">
+  <div class="section-head">
+    <div><div class="eyebrow">The HUDLI edit</div><h2>Our Eyewear</h2><p class="sub">Choose your favourite frame and add it to your bag.</p></div>
+  </div>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search frames, sunglasses..." oninput="renderProducts()">
+    <select id="categoryFilter" onchange="renderProducts()">
+      <option value="All">All Collections</option>
+      <option value="Eyeglasses">Eyeglasses</option>
+      <option value="Sunglasses">Sunglasses</option>
+      <option value="Premium">Premium</option>
+      <option value="Blue Light">Blue Light</option>
+    </select>
+    <select id="sort" onchange="renderProducts()">
+      <option value="featured">Featured</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+      <option value="name">Name: A to Z</option>
+    </select>
+  </div>
+  <div class="products" id="productGrid"></div>
+  <p class="sub" id="resultCount" style="margin-top:18px"></p>
+</section>
+
+<section class="section">
+  <div class="banner">
+    <div>
+      <div class="eyebrow" style="color:#e2c58d">Your style, your vision</div>
+      <h2>Find frames that feel like you.</h2>
+      <p>Explore versatile designs for work, weekends and every moment in between.</p>
+    </div>
+    <a class="btn" href="#shop">Explore Eyewear →</a>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="about-grid">
+    <img class="about-img" src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=900&q=80" alt="Eyewear close-up">
+    <div>
+      <div class="eyebrow">The HUDLI story</div>
+      <h2>Where vision meets style.</h2>
+      <p class="sub">HUDLI Eyecare brings together contemporary design, everyday comfort and a carefully selected range of eyewear. Our goal is to make finding your next favourite frame simple and enjoyable.</p>
+      <p class="sub">From classic eyeglasses to bold sunglasses, discover styles that complement your everyday life.</p>
+      <a class="btn" href="#shop">Discover the Collection</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="logo" style="color:white">HUDLI<small>E Y E C A R E</small></a>
+      <p>Where vision meets style.<br>Eyewear for every day.</p>
+      <p>Replace this text with your shop's address and contact details.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <a href="#shop">All Eyewear</a>
+      <a href="#categories">Collections</a>
+      <a href="#about">Our Story</a>
+    </div>
+    <div>
+      <h3>Get in Touch</h3>
+      <a href="mailto:yourshop@example.com">Email Our Shop</a>
+      <a href="#" onclick="contactWhatsApp();return false;">WhatsApp Us</a>
+      <a href="#contact">Customer Support</a>
+    </div>
+  </div>
+  <p style="text-align:center;border-top:1px solid #ffffff22;padding-top:20px;margin-top:30px">© <span id="year"></span> HUDLI Eyecare. All rights reserved.</p>
+</footer>
+
+<!-- Shopping cart drawer -->
+<div class="overlay" id="cartOverlay" onclick="overlayClick(event,'cartOverlay')">
+  <div class="drawer">
+    <div class="drawer-head"><h2>Your Shopping Bag</h2><button class="close" onclick="closeOverlay('cartOverlay')">✕</button></div>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal"></div>
+    <button class="btn full" onclick="openCheckout()">Proceed to Checkout →</button>
+    <button class="btn btn-outline full" onclick="closeOverlay('cartOverlay');document.getElementById('shop').scrollIntoView()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- Product details -->
+<div class="modal" id="detailModal" onclick="modalClick(event,'detailModal')">
+  <div class="modal-card" id="detailContent"></div>
+</div>
+
+<!-- Checkout -->
+<div class="modal" id="checkoutModal" onclick="modalClick(event,'checkoutModal')">
+  <div class="modal-card">
+    <div class="drawer-head"><h2>Checkout</h2><button class="close" onclick="closeOverlay('checkoutModal')">✕</button></div>
+    <p class="sub">Enter your details to submit your order request.</p>
+    <form id="checkoutForm">
+      <label for="customerName">Full Name *</label>
+      <input id="customerName" name="name" required autocomplete="name" placeholder="Your full name">
+      <label for="customerPhone">Mobile Number *</label>
+      <input id="customerPhone" name="phone" required type="tel" autocomplete="tel" pattern="[0-9 +()-]{10,16}" placeholder="Your contact number">
+      <label for="customerEmail">Email (optional)</label>
+      <input id="customerEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+      <label for="deliveryAddress">Delivery Address *</label>
+      <textarea id="deliveryAddress" name="address" required rows="3" placeholder="House number, street, city, PIN code"></textarea>
+      <label for="payment">Preferred Payment Method</label>
+      <select id="payment" name="payment">
+        <option value="Cash on Delivery">Cash on Delivery (if available)</option>
+        <option value="UPI">UPI (arrange payment with shop)</option>
+        <option value="Pay at Store">Pay at Store / Pickup</option>
+      </select>
+      <label for="orderNotes">Order Notes (optional)</label>
+      <textarea id="orderNotes" name="notes" rows="2" placeholder="Frame colour, lens preferences, etc."></textarea>
+      <div id="checkoutSummary" class="notice"></div>
+      <button class="btn full" type="submit">Submit Order Request</button>
+      <p class="sub">This demo does not process payments. The shop must confirm the order, price and availability.</p>
+    </form>
+  </div>
+</div>
+
+<!-- Confirmation -->
+<div class="modal" id="successModal">
+  <div class="modal-card">
+    <div style="text-align:center;padding:20px 5px">
+      <div style="font-size:52px">✓</div>
+      <h2>Order Request Saved!</h2>
+      <p id="successMessage" class="sub"></p>
+      <p class="sub">Please contact the shop to confirm your order. This website stores demo orders in this browser only; it does not automatically notify the shop.</p>
+      <button class="btn full" onclick="closeOverlay('successModal');closeOverlay('cartOverlay')">Continue Shopping</button>
+      <button class="btn btn-outline full" onclick="downloadOrder()">Download Order Details</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// ----------------------------------------------------
+// HUDLI EYECARE: EDIT PRODUCTS AND SHOP DETAILS HERE
+// ----------------------------------------------------
+const SHOP = {
+  name: "HUDLI Eyecare",
+  whatsapp: "", // Add your WhatsApp number with country code, e.g. 919876543210
+  currency: "INR",
+  deliveryFee: 0
+};
+
+// Replace image URLs with your own product photos.
+const products = [
+  {id:1,name:"Classic Black Frame",category:"Eyeglasses",price:799,old:1199,tag:"Bestseller",rating:4.8,image:"https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=700&q=80",desc:"A versatile black frame for a clean, everyday look."},
+  {id:2,name:"Urban Aviator",category:"Sunglasses",price:999,old:1499,tag:"Popular",rating:4.7,image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",desc:"A timeless aviator-inspired style for everyday outfits."},
+  {id:3,name:"Modern Transparent",category:"Eyeglasses",price:899,old:1299,tag:"Trending",rating:4.6,image:"https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=700&q=80",desc:"A lightweight-looking transparent frame with a modern finish."},
+  {id:4,name:"Premium Gold Edition",category:"Premium",price:1799,old:2499,tag:"Premium",rating:4.9,image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",desc:"An elegant fashion-inspired design for a distinctive look."},
+  {id:5,name:"Everyday Blue Light",category:"Blue Light",price:699,old:999,tag:"Work Ready",rating:4.5,image:"https://images.unsplash.com/photo-1509695507497-903c140c43b0?auto=format&fit=crop&w=700&q=80",desc:"A screen-wear frame. Lens filtering specifications must be confirmed before purchase."},
+  {id:6,name:"Retro Round Frame",category:"Eyeglasses",price:849,old:1199,tag:"Classic",rating:4.6,image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=80",desc:"A round silhouette inspired by vintage eyewear."},
+  {id:7,name:"Bold Square Shades",category:"Sunglasses",price:1199,old:1699,tag:"New Style",rating:4.8,image:"https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=700&q=80",desc:"A confident square silhouette for sunny days."},
+  {id:8,name:"Executive Metal",category:"Premium",price:1599,old:2199,tag:"Elegant",rating:4.7,image:"https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=700&q=80",desc:"A refined, minimal-inspired style for a polished appearance."}
+];
+
+const money = amount => new Intl.NumberFormat("en-IN", {
+  style:"currency",currency:SHOP.currency,maximumFractionDigits:0
+}).format(amount);
+
+let cart = loadJSON("hudli_cart", {});
+let wishlist = loadJSON("hudli_wishlist", []);
+let lastOrder = null;
+let toastTimer;
+
+function loadJSON(key,fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; }
+  catch(e) { return fallback; }
+}
+function saveState() {
+  try {
+    localStorage.setItem("hudli_cart",JSON.stringify(cart));
+    localStorage.setItem("hudli_wishlist",JSON.stringify(wishlist));
+  } catch(e) { showToast("Browser storage unavailable. Your changes may not persist."); }
+}
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function showToast(message) {
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.style.display="block";
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.style.display="none",2600);
+}
+function renderProducts() {
+  let list=[...products];
+  const term=document.getElementById("search").value.trim().toLowerCase();
+  const cat=document.getElementById("categoryFilter").value;
+  const sort=document.getElementById("sort").value;
+  list=list.filter(p=>(cat==="All"||p.category===cat) &&
+    (p.name+" "+p.category+" "+p.desc).toLowerCase().includes(term));
+  if(sort==="low") list.sort((a,b)=>a.price-b.price);
+  if(sort==="high") list.sort((a,b)=>b.price-a.price);
+  if(sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
+
+  document.getElementById("resultCount").textContent=list.length+" product(s) found";
+  document.getElementById("productGrid").innerHTML=list.length ? list.map(p=>`
+    <article class="product">
+      <div class="product-photo" onclick="showDetail(${p.id})">
+        <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" loading="lazy">
+        <span class="tag">${escapeHTML(p.tag)}</span>
+        <button class="wish ${wishlist.includes(p.id)?"active":""}" aria-label="Toggle wishlist" onclick="event.stopPropagation();toggleWish(${p.id})">${wishlist.includes(p.id)?"♥":"♡"}</button>
+      </div>
+      <div class="product-info">
+        <div class="rating">★ ${p.rating.toFixed(1)} <span class="sub">· ${escapeHTML(p.category)}</span></div>
+        <h3>${escapeHTML(p.name)}</h3>
+        <div class="price">${money(p.price)} <span class="oldprice">${money(p.old)}</span></div>
+        <button class="addbtn" onclick="addToCart(${p.id})">＋ Add to Bag</button>
+        <button class="addbtn" onclick="showDetail(${p.id})" style="border:0">View Details</button>
+      </div>
+    </article>`).join("") : '<div class="empty" style="grid-column:1/-1">No matching frames found. Try another search.</div>';
+}
+function filterCategory(cat) {
+  document.getElementById("categoryFilter").value=cat;
+  document.getElementById("shop").scrollIntoView();
+  renderProducts();
+}
+function addToCart(id) {
+  cart[id]=(cart[id]||0)+1;
+  saveState(); updateCart();
+  showToast("Added to your shopping bag");
+}
+function toggleWish(id) {
+  wishlist=wishlist.includes(id)?wishlist.filter(x=>x!==id):[...wishlist,id];
+  saveState(); renderProducts(); updateCounts();
+  showToast(wishlist.includes(id)?"Added to wishlist":"Removed from wishlist");
+}
+function updateCounts() {
+  document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
+  document.getElementById("wishCount").textContent=wishlist.length;
+}
+function cartSubtotal() {
+  return Object.entries(cart).reduce((sum,[id,qty])=>{
+    const p=products.find(x=>x.id===Number(id));
+    return sum+(p?p.price*qty:0);
+  },0);
+}
+function updateCart() {
+  const items=Object.entries(cart).filter(([id,qty])=>qty>0&&products.some(p=>p.id===Number(id)));
+  document.getElementById("cartItems").innerHTML=items.length?items.map(([id,qty])=>{
+    const p=products.find(x=>x.id===Number(id));
+    return `<div class="cart-item">
+      <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
+      <div style="flex:1">
+        <h4>${escapeHTML(p.name)}</h4><strong>${money(p.price*qty)}</strong>
+        <div class="qty">
+          <button onclick="changeQty(${p.id},-1)" aria-label="Decrease quantity">−</button>
+          <span>${qty}</span>
+          <button onclick="changeQty(${p.id},1)" aria-label="Increase quantity">+</button>
+          <button onclick="removeItem(${p.id})" style="margin-left:auto">Remove</button>
+        </div>
+      </div>
+    </div>`;
+  }).join(""):'<div class="empty"><div style="font-size:38px">🛍️</div><h3>Your bag is empty</h3><p>Find a frame you love.</p></div>';
+  document.getElementById("cartTotal").innerHTML=`
+    <div><span>Subtotal</span><strong>${money(cartSubtotal())}</strong></div>
+    <div><span>Delivery</span><strong>${SHOP.deliveryFee===0?"Free":money(SHOP.deliveryFee)}</strong></div>
+    <div style="font-size:18px"><strong>Total</strong><strong>${money(cartSubtotal()+SHOP.deliveryFee)}</strong></div>`;
+  updateCounts();
+}
+function changeQty(id,delta) {
+  cart[id]=(cart[id]||0)+delta;
+  if(cart[id]<=0) delete cart[id];
+  saveState(); updateCart();
+}
+function removeItem(id) {
+  delete cart[id]; saveState(); updateCart(); showToast("Item removed");
+}
+function showDetail(id) {
+  const p=products.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById("detailContent").innerHTML=`
+    <div class="drawer-head"><h2>Product Details</h2><button class="close" onclick="closeOverlay('detailModal')">✕</button></div>
+    <div class="detail-grid" style="margin-top:20px">
+      <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
+      <div>
+        <span class="eyebrow">${escapeHTML(p.category)}</span>
+        <h2>${escapeHTML(p.name)}</h2>
+        <div class="rating">★ ${p.rating.toFixed(1)} customer-style rating (sample)</div>
+        <div class="price">${money(p.price)} <span class="oldprice">${money(p.old)}</span></div>
+        <p class="sub">${escapeHTML(p.desc)}</p>
+        <p class="sub">Confirm frame dimensions, lens options and availability with the shop before purchase.</p>
+        <button class="btn full" onclick="addToCart(${p.id});closeOverlay('detailModal')">Add to Bag</button>
+      </div>
+    </div>`;
+  openOverlay("detailModal");
+}
+function openOverlay(id) { document.getElementById(id).classList.add("show"); }
+function closeOverlay(id) { document.getElementById(id).classList.remove("show"); }
+function overlayClick(event,id) { if(event.target.id===id) closeOverlay(id); }
+function modalClick(event,id) { if(event.target.id===id) closeOverlay(id); }
+function openCart() { updateCart(); openOverlay("cartOverlay"); }
+function openWishlist() {
+  const items=products.filter(p=>wishlist.includes(p.id));
+  document.getElementById("detailContent").innerHTML=`
+    <div class="drawer-head"><h2>Your Wishlist</h2><button class="close" onclick="closeOverlay('detailModal')">✕</button></div>
+    ${items.length?items.map(p=>`
+      <div class="cart-item">
+        <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}">
+        <div style="flex:1"><h4>${escapeHTML(p.name)}</h4><strong>${money(p.price)}</strong>
+        <button class="addbtn" onclick="addToCart(${p.id})">Add to Bag</button>
+        <button class="addbtn" onclick="toggleWish(${p.id});openWishlist()">Remove ♡</button></div>
+      </div>`).join(""):'<div class="empty">Your wishlist is empty.</div>'}`;
+  openOverlay("detailModal");
+}
+function openCheckout() {
+  if(cartSubtotal()<=0) { showToast("Add a product to your bag first"); return; }
+  closeOverlay("cartOverlay");
+  document.getElementById("checkoutSummary").innerHTML=
+    `<strong>Order total: ${money(cartSubtotal()+SHOP.deliveryFee)}</strong><br>${Object.values(cart).reduce((a,b)=>a+b,0)} item(s) in your bag`;
+  openOverlay("checkoutModal");
+}
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  if(cartSubtotal()<=0) { closeOverlay("checkoutModal"); showToast("Your bag is empty"); return; }
+  const data=Object.fromEntries(new FormData(this).entries());
+  lastOrder={
+    orderId:"HUD"+Date.now().toString().slice(-8),
+    date:new Date().toLocaleString("en-IN"),
+    customer:data,
+    items:Object.entries(cart).map(([id,qty])=>{
+      const p=products.find(x=>x.id===Number(id));
+      return {name:p.name,price:p.price,quantity:qty};
+    }),
+    subtotal:cartSubtotal(),
+    delivery:SHOP.deliveryFee,
+    total:cartSubtotal()+SHOP.deliveryFee
+  };
+  try {
+    let orders=loadJSON("hudli_demo_orders",[]);
+    orders.push(lastOrder);
+    localStorage.setItem("hudli_demo_orders",JSON.stringify(orders));
+  } catch(err) {}
+  document.getElementById("successMessage").textContent=
+    "Reference: "+lastOrder.orderId+". Total: "+money(lastOrder.total)+". Your order request is saved in this browser.";
+  cart={}; saveState(); updateCart();
+  closeOverlay("checkoutModal");
+  this.reset();
+  openOverlay("successModal");
+});
+function downloadOrder() {
+  if(!lastOrder) return;
+  const blob=new Blob([JSON.stringify(lastOrder,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url; a.download=lastOrder.orderId+".json"; a.click();
+  URL.revokeObjectURL(url);
+}
+function contactWhatsApp() {
+  if(!SHOP.whatsapp) {
+    showToast("Add your shop WhatsApp number in the SHOP settings first.");
+    return;
+  }
+  window.open("https://wa.me/"+SHOP.whatsapp,"_blank","noopener,noreferrer");
+}
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProducts();
+updateCart();
+</script>
+</body>
+</html>
